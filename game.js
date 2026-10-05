@@ -23,14 +23,14 @@
 
   // Larger pieces so the characters are easier to see on phones.
   const LEVELS = [
-    { radius: 45, points: 1 },
-    { radius: 58, points: 3 },
-    { radius: 73, points: 6 },
-    { radius: 91, points: 10 },
-    { radius: 113, points: 15 },
-    { radius: 139, points: 21 },
-    { radius: 170, points: 28 },
-    { radius: 205, points: 36 }
+    { radius: 40, points: 1 },
+    { radius: 52, points: 3 },
+    { radius: 65, points: 6 },
+    { radius: 82, points: 10 },
+    { radius: 100, points: 15 },
+    { radius: 120, points: 21 },
+    { radius: 150, points: 28 },
+    { radius: 175, points: 36 }
   ];
 
   const SPAWN_LEVELS = [0, 0, 0, 1, 1, 2];
