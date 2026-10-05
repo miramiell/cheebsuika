@@ -23,14 +23,14 @@
 
   // Larger pieces so the characters are easier to see on phones.
   const LEVELS = [
-    { radius: 37, points: 1 },
-    { radius: 45, points: 3 },
-    { radius: 60, points: 6 },
-    { radius: 75, points: 10 },
-    { radius: 90, points: 15 },
-    { radius: 115, points: 21 },
-    { radius: 130, points: 28 },
-    { radius: 150, points: 36 }
+    { radius: 34, points: 1 },
+    { radius: 42, points: 3 },
+    { radius: 53, points: 6 },
+    { radius: 66, points: 10 },
+    { radius: 81, points: 15 },
+    { radius: 99, points: 21 },
+    { radius: 119, points: 28 },
+    { radius: 140, points: 36 }
   ];
 
   const SPAWN_LEVELS = [0, 0, 0, 1, 1, 2];
@@ -216,7 +216,7 @@
         const rb = LEVELS[b.level].radius * scale;
 
         // Slight overlap tolerance makes merging feel more forgiving.
-        if (distance <= (ra + rb) * 1.06) {
+        if (distance <= (ra + rb) * 1.12) {
           a.merging = true;
           b.merging = true;
           mergeLock = true;
