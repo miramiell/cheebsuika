@@ -21,78 +21,64 @@ button {
 }
 
 .page {
-  width: min(100% - 32px, 920px);
+  width: min(100% - 20px, 520px);
   margin: 0 auto;
-  padding: 24px 0 40px;
+  padding: 16px 0 28px;
 }
 
 .header {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 20px;
   border-bottom: 2px solid #111111;
-  padding-bottom: 14px;
-  margin-bottom: 20px;
+  padding-bottom: 10px;
+  margin-bottom: 12px;
 }
 
-h1,
-h2,
-p {
-  margin: 0;
+.title-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 h1 {
-  font-size: 28px;
+  margin: 0;
+  font-size: 25px;
   line-height: 1;
   font-weight: 800;
   letter-spacing: -0.04em;
 }
 
-.header p {
-  margin-top: 7px;
-  font-size: 13px;
-  color: #555555;
-}
-
 .score-box {
-  min-width: 100px;
-  border: 2px solid #111111;
-  padding: 8px 10px 7px;
-  text-align: right;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  border-left: 2px solid #111111;
+  padding-left: 10px;
 }
 
 .score-box span {
-  display: block;
-  font-size: 10px;
-  font-weight: 700;
+  font-size: 9px;
+  font-weight: 800;
   letter-spacing: 0.08em;
 }
 
 .score-box strong {
-  display: block;
-  margin-top: 1px;
-  font-size: 22px;
+  font-size: 20px;
   line-height: 1;
 }
 
 .game-layout {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 28px;
+  display: block;
 }
 
 .game-wrap {
   position: relative;
-  width: min(100%, 430px);
-  flex: 0 1 430px;
+  width: min(100%, 340px);
+  margin: 0 auto;
 }
 
 .game-container {
   position: relative;
   width: 100%;
-  aspect-ratio: 3 / 5;
+  aspect-ratio: 3 / 4.15;
   border: 2px solid #111111;
   background: #f5f1e8;
   overflow: hidden;
@@ -109,10 +95,10 @@ canvas {
 .next-box {
   position: absolute;
   z-index: 5;
-  top: 8px;
-  left: 8px;
-  width: 62px;
-  height: 62px;
+  top: 7px;
+  left: 7px;
+  width: 54px;
+  height: 54px;
   border: 2px solid #111111;
   background: #ffffff;
   text-align: center;
@@ -121,16 +107,16 @@ canvas {
 
 .next-box span {
   display: block;
-  font-size: 8px;
-  line-height: 14px;
+  font-size: 7px;
+  line-height: 12px;
   font-weight: 800;
   letter-spacing: 0.08em;
 }
 
 .next-box img {
   display: block;
-  width: 42px;
-  height: 42px;
+  width: 38px;
+  height: 38px;
   object-fit: contain;
   margin: 0 auto;
 }
@@ -139,20 +125,20 @@ canvas {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  margin-top: 10px;
-  font-size: 12px;
+  gap: 10px;
+  margin-top: 7px;
+  font-size: 11px;
   color: #555555;
 }
 
 .controls button,
 .game-over button {
-  min-height: 44px;
+  min-height: 42px;
   border: 2px solid #111111;
   border-radius: 0;
   background: #ffffff;
   color: #111111;
-  padding: 8px 14px;
+  padding: 7px 12px;
   font-weight: 800;
   cursor: pointer;
   touch-action: manipulation;
@@ -162,25 +148,6 @@ canvas {
 .game-over button:active {
   background: #111111;
   color: #ffffff;
-}
-
-.rules {
-  width: 190px;
-  border: 2px solid #111111;
-  padding: 14px;
-}
-
-.rules h2 {
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  margin-bottom: 12px;
-}
-
-.rules p {
-  font-size: 12px;
-  line-height: 1.45;
-  padding: 9px 0;
-  border-top: 1px solid #cccccc;
 }
 
 .game-over {
@@ -200,65 +167,52 @@ canvas {
 }
 
 .game-over-title {
-  font-size: 30px;
+  font-size: 28px;
   font-weight: 900;
   letter-spacing: -0.04em;
 }
 
 .game-over-score {
-  font-size: 15px;
+  font-size: 14px;
 }
 
 .game-over button {
   margin-top: 4px;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 380px) {
   .page {
-    width: min(100% - 20px, 430px);
-    padding-top: 12px;
-  }
-
-  .header {
-    align-items: center;
-    margin-bottom: 12px;
+    width: min(100% - 14px, 340px);
+    padding-top: 10px;
   }
 
   h1 {
     font-size: 22px;
   }
 
-  .header p {
-    display: none;
-  }
-
   .score-box {
-    min-width: 84px;
+    padding-left: 8px;
   }
 
-  .game-layout {
-    display: block;
+  .score-box strong {
+    font-size: 18px;
   }
 
   .game-wrap {
     width: 100%;
   }
 
-  .rules {
-    display: none;
-  }
-
-  .controls {
-    margin-top: 7px;
+  .game-container {
+    aspect-ratio: 3 / 4.15;
   }
 }
 
-@media (max-height: 700px) and (max-width: 720px) {
+@media (min-width: 381px) and (max-width: 600px) {
   .page {
-    padding-top: 7px;
+    width: min(100% - 20px, 360px);
   }
 
-  .game-container {
-    aspect-ratio: 3 / 4.9;
+  .game-wrap {
+    width: min(100%, 350px);
   }
 }

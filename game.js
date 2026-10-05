@@ -281,8 +281,11 @@
     const radius = LEVELS[currentLevel].radius * scale;
     const x = clampAim(aimX);
     const y = 54 * scale;
+    const image = images[currentLevel];
 
     ctx.save();
+
+    // Aim guide.
     ctx.strokeStyle = "#111111";
     ctx.lineWidth = 1;
     ctx.setLineDash([5, 5]);
@@ -293,11 +296,28 @@
     ctx.stroke();
 
     ctx.setLineDash([]);
-    ctx.globalAlpha = 0.7;
 
-    ctx.beginPath();
-    ctx.arc(x, y, radius, 0, Math.PI * 2);
-    ctx.stroke();
+    // Show the currently selected ball while aiming.
+    if (image && image.complete) {
+      ctx.globalAlpha = 0.9;
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(x, y, radius, 0, Math.PI * 2);
+      ctx.clip();
+      ctx.drawImage(
+        image,
+        x - radius,
+        y - radius,
+        radius * 2,
+        radius * 2
+      );
+      ctx.restore();
+    } else {
+      ctx.globalAlpha = 0.7;
+      ctx.beginPath();
+      ctx.arc(x, y, radius, 0, Math.PI * 2);
+      ctx.stroke();
+    }
 
     ctx.restore();
   }
