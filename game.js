@@ -21,15 +21,16 @@
 
   const ctx = canvas.getContext("2d");
 
+  // Larger pieces so the characters are easier to see on phones.
   const LEVELS = [
-    { radius: 22, points: 1 },
-    { radius: 27, points: 3 },
-    { radius: 32, points: 6 },
-    { radius: 38, points: 10 },
-    { radius: 45, points: 15 },
-    { radius: 53, points: 21 },
-    { radius: 62, points: 28 },
-    { radius: 72, points: 36 }
+    { radius: 29, points: 1 },
+    { radius: 35, points: 3 },
+    { radius: 42, points: 6 },
+    { radius: 50, points: 10 },
+    { radius: 59, points: 15 },
+    { radius: 69, points: 21 },
+    { radius: 80, points: 28 },
+    { radius: 93, points: 36 }
   ];
 
   const SPAWN_LEVELS = [0, 0, 0, 1, 1, 2];
@@ -143,9 +144,9 @@
     const radius = data.radius * scale;
 
     const ball = Bodies.circle(x, y, radius, {
-      restitution: 0.08,
-      friction: 0.55,
-      frictionStatic: 0.8,
+      restitution: 0.22,
+      friction: 0.42,
+      frictionStatic: 0.65,
       frictionAir: 0.012,
       density: 0.0018,
       sleepThreshold: 40,
@@ -190,6 +191,40 @@
   function addScore(points) {
     score += points;
     scoreEl.textContent = String(score);
+  }
+
+  function checkNearbyMerges() {
+    if (mergeLock || gameOver) return;
+
+    const balls = Composite.allBodies(engine.world)
+      .filter(body => body.gameBall && !body.merging);
+
+    for (let i = 0; i < balls.length; i++) {
+      for (let j = i + 1; j < balls.length; j++) {
+        const a = balls[i];
+        const b = balls[j];
+
+        if (a.level !== b.level) continue;
+        if (a.level >= LEVELS.length - 1) continue;
+        if (a.merging || b.merging) continue;
+
+        const dx = a.position.x - b.position.x;
+        const dy = a.position.y - b.position.y;
+        const distance = Math.hypot(dx, dy);
+
+        const ra = LEVELS[a.level].radius * scale;
+        const rb = LEVELS[b.level].radius * scale;
+
+        // Slight overlap tolerance makes merging feel more forgiving.
+        if (distance <= (ra + rb) * 1.06) {
+          a.merging = true;
+          b.merging = true;
+          mergeLock = true;
+          mergeBalls(a, b);
+          return;
+        }
+      }
+    }
   }
 
   function handleCollisions(event) {
@@ -456,8 +491,9 @@
   }
 
   function loopChecks() {
+    checkNearbyMerges();
     checkGameOver();
-    setTimeout(loopChecks, 100);
+    setTimeout(loopChecks, 50);
   }
 
   loopChecks();
